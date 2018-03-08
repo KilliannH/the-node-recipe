@@ -37,7 +37,6 @@ myApp.controller('RecipesController', ['$scope', '$http', '$location', '$routePa
             //on ne pass in rien du tout (pas d'attributs du book when delete) donc on s'en fout du $scope.book
             window.location.href='#!/recipes';
         });
-
     }
-
+    
 }]);

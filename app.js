@@ -30,9 +30,12 @@ const Recipe = sequelize.define('recipe', {
     },
     directions: {
         type: Sequelize.TEXT
+    },
+    img_url: {
+        type: Sequelize.TEXT
     }
 
-  });
+});
 
 //Let's do some api stuff here
 
@@ -61,8 +64,9 @@ app.post('/api/recipes/', function (req, res) {
     name: req.body.name,
     ingredients: req.body.ingredients,
     directions: req.body.directions,
+    img_url: req.body.img_url,
 
-    //Those filds are not automatic
+    //Those filds are not automatic on post, but completed on PUT
     id: req.body.id,
     createdAt: req.body.createdAt,
     updatedAt: req.body.updatedAt
@@ -83,7 +87,9 @@ app.put('/api/recipes/:id', function (req, res) {
       recipe.updateAttributes({
         name: req.body.name,
         ingredients: req.body.ingredients,
-        directions: req.body.directions
+        directions: req.body.directions,
+        img_url: req.body.img_url
+
       }).then(function(recipe) {
         res.send(recipe)
       })
