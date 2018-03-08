@@ -1,1 +1,24 @@
-BIBI
+<div ng-init="getRecipe()" class="under_the_nav"></div>
+    <div class="card card_container">
+        <div class="row card-block">
+            <div class="col-md-4">
+                <img src="{{recipe.img_url}}" class="card-img" alt="{{recipe.name}}">
+            </div>
+            <div class="col-md-8">
+                <br>
+                    <a href="#!/recipes" class="btn back-btn btn-outline-success float-right">Go Back</a>
+                      <h4 class="card-title">{{recipe.name}}</h4>
+                      <div class='col-md-12'>
+                          <h6 class="text-success">Ingrédients</h6>
+                        <p class="card-text">{{recipe.ingredients}}</p>
+                      </div>
+                      <br>
+                      <br>
+                      <div class='col-md-12'>
+                            <h6 class="text-success">Instructions</h6>
+                          <p class="card-text">{{recipe.directions}}</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

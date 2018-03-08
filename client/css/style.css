@@ -1,5 +1,14 @@
+
+/* Body */
+
+body {
+    background-color: whitesmoke;
+}
+
+/* Recipe Home */
+
 .under_the_nav {
-    padding-top: 60px;
+    padding-top: 80px;
 }
 
 .rounded-circle {
@@ -10,4 +19,18 @@
     margin-bottom: 40px;
     margin-left: 30px;
     margin-right: 30px;
+}
+
+.card-img-right{
+    width: 200px;
+    height: 200px;
+}
+
+.node_green {
+    color: hsl(120, 58%, 67%);
+}
+
+/* Recipe Details here */
+.back-btn {
+    margin-right: 25px;
 }
