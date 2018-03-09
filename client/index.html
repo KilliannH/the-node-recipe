@@ -1,46 +1,32 @@
-<html ng-app>
+<html ng-app="myApp">
 
 <body>
 <head>
     <title>The Node Recipe</title>
-    <script src="/app/lib/angular.min.js"></script>
-    <link rel="stylesheet" href="app/lib/bootstrap.min.css">
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">The <span class="node_green">Node</span> Recipe</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Add <span class="sr-only">(current)</span></a>
-          </li>
-          <li>
-          <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
-          </li>
-          <li>
-          <a class="nav-link" href="#">Register <span class="sr-only">(current)</span></a>
-          </li>
-      </ul>
-    </div>
-  </nav>
+<header ng-include="'navbar.html'"></header>
 
 <div clas="container">
     <div class="row">
         <div class="col-md-12">
-            <div ng-view>
-
-            </div>
+                <div ng-controller="appController">
+                    <br>
+                    <br>
+                    <br>
+                    <p>{{recipes.name}}</p>
+                </div>
         </div>
     </div>
 </div>
 
 
-<script src="app/lib/jquery.min.js"></script>
-<script src="app/lib/bootstrap.min.js"></script>
-<script src="app.js"></script>
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
