@@ -13,8 +13,8 @@ myApp.controller('appController', ['$scope', function($scope){
 
     $scope.recipes = [
         {
-            int: 1,
-            name: "recipe",
+            id: 1,
+            name: "firstRecipe",
             ingredients: "tomato",
             directions: "do it",
             img_url: "tomatoPic",

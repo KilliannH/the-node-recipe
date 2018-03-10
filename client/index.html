@@ -19,7 +19,9 @@
                     <br>
                     <br>
                     <br>
-                    <p>{{recipes.name}}</p>
+                    <div ng-repeat="recipe in recipes">
+                    <p>{{recipe.name}}</p>
+                    </div>
                 </div>
         </div>
     </div>
