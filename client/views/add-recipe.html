@@ -1,5 +1,26 @@
 <br>
 <br>
 <br>
-<br>
-ADD RECIPE
+<h3>Add Recipe</h3>
+
+            <form ng-submit="addRecipe()">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" ng-model="recipe.name" placeholder="name">
+                </div>
+                    <div class="form-group">
+                        <label>Inredients</label>
+                        <input type="text" class="form-control" ng-model="recipe.ingredients" placeholder="ingredients">
+                    </div>
+                    <div class="form-group">
+                        <label>Directions</label>
+                        <textarea type="text" class="form-control" ng-model="recipe.directions" placeholder="directions"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>ImgUrl</label>
+                        <input type="text" class="form-control" ng-model="recipe.img_url" placeholder="imgUrl">
+                    </div>
+
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+            </form>

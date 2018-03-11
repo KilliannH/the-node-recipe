@@ -47,4 +47,28 @@ myApp.controller('appController', ['$scope', '$http', '$routeParams', function($
         });
     }
 
+    $scope.addRecipe = function() {
+        $http.post('/api/recipes/', $scope.recipe).then(function (response) {
+            //En second paramètre, l'objet du scope qui va contenir de la data,
+            //ici recipe.
+
+            window.location.href='#!/';
+        });
+    }
+
+    $scope.updateRecipe = function() {
+        var id= $routeParams.id;
+        $http.put('/api/recipes/' + id, $scope.recipe).then(function (response) {
+                
+            window.location.href='#!/';
+        });
+    }
+
+    $scope.deleteRecipe = function(id) {
+        $http.delete('/api/recipes/' + id, $scope.recipe).then(function (response) {
+
+            window.location.href='#!/';
+        });
+    }
+
 }]);
