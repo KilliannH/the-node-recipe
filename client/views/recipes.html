@@ -1,5 +1,11 @@
-<br>
-<br>
-<br>
-<br>
-RECIPES
+<div ng-init="getRecipes()">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h3>Latest Recipes</h3>
+        <div ng-repeat="recipe in recipes">
+                    <a href="#!/details/{{recipe.id}}"><h4>{{recipe.name}}</h4></a>
+                    <p>{{recipe.ingredients}}</p>
+        </div>
+</div>

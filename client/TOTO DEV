@@ -1,0 +1,5 @@
+add client functionality to post a new recipe.
+add client functionality to edit / delete an existing recipe.
+
+add client auth functionality
+Setup rules for guest client & logged client.

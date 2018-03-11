@@ -5,17 +5,18 @@ myApp.config(['$routeProvider', function($routeProvider){
     
     $routeProvider
         .when('/', {
-            templateUrl: 'views/recipes.html'
+            templateUrl: 'views/recipes.html',
+            controller: 'appController'
         })
-        .when('/recipes/details/:id', {
+        .when('/details/:id', {
             templateUrl: 'views/recipe-details.html',
             controller: 'appController'
         })
-        .when('/recipes/add', {
+        .when('/add', {
             templateUrl: 'views/add-recipe.html',
             controller: 'appController'
         })
-        .when('/recipes/edit/:id', {
+        .when('/edit/:id', {
             templateUrl: 'views/edit-recipe.html',
             controller: 'appController'
         })
@@ -29,19 +30,21 @@ myApp.run(function(){
 //use during app runs
 });
 
-myApp.controller('appController', ['$scope', function($scope){
+myApp.controller('appController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
     console.log("appController on the go...")
 
-    $scope.recipes = [
-        {
-            id: 1,
-            name: "firstRecipe",
-            ingredients: "tomato",
-            directions: "do it",
-            img_url: "tomatoPic",
-            createdAt: "10-10-10",
-            createdAt: "10-10-10"
-        }
-    ];
+    $scope.getRecipes = function(){
+
+       $http.get('/api/recipes').then(function(response){
+        $scope.recipes = response.data;
+        });
+    }
+
+    $scope.getRecipe = function() {
+        var id= $routeParams.id;
+        $http.get('/api/recipes/' + id).then(function(response){
+            $scope.recipe = response.data;
+        });
+    }
 
 }]);
