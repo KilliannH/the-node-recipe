@@ -63,18 +63,32 @@ const User = sequelize.define('user', {
 //Let's do some api stuff here
 
 // For Users //
+
+// Add new user //
+
 app.post('/signup', (req, res) => {
-  bcrypt.hash(req.body.password, 10, (err, hash) => {
-    if(err) {
-      return res.status(500).json({error: err});
+  //Checking if username already exist by querying database
+  User.count({ where: {username: req.body.username}}).then(user => {
+    console.log(user)
+    if(user >=1) {
+      return res.status(409) 
+      //error 409 means conflict, 422 means process issues.
+      //Use wathever you want.
+      .json({message: 'username already exist'});
     } else {
-      User.create({
-        username: req.body.username,
-        password: hash
-    
-      }).then((user) => res.json(user))
+      bcrypt.hash(req.body.password, 10, (err, hash) => {
+        if(err) {
+          return res.status(500).json({error: err});
+        } else {
+          User.create({
+            username: req.body.username,
+            password: hash
+        
+          }).then((user) => res.json(user))
+        }
+      });
     }
-  });
+  })
 });
 
 
