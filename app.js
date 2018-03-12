@@ -105,12 +105,10 @@ app.post('/api/recipes/', function (req, res) {
     name: req.body.name,
     ingredients: req.body.ingredients,
     directions: req.body.directions,
-    img_url: req.body.img_url,
+    img_url: req.body.img_url
 
-    //Those filds are not automatic on post, but completed on PUT
-    id: req.body.id,
-    createdAt: req.body.createdAt,
-    updatedAt: req.body.updatedAt
+    //My bad, id, createdAt & updatedAt are filled automatically on post.
+    //Very cool :)
 
   }).then((recipe) => res.json(recipe))
 });
