@@ -5,6 +5,8 @@ var Sequelize = require('sequelize');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
+const checkAuth = require('./check-auth');
+
 app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
@@ -163,7 +165,7 @@ app.get('/api/recipes/:id', function (req, res) {
 });
 
 /// POST NEW RECIPE ///
-app.post('/api/recipes/', function (req, res) {
+app.post('/api/recipes/', checkAuth, function (req, res) {
 
   Recipe.create({
     name: req.body.name,
@@ -210,7 +212,6 @@ app.delete('/api/recipes/:id', function (req, res) {
     }
   }).then((recipe) => recipe ? res.json(recipe) : res.status(404).json({error: 'unknown recipe'}))
 });
-
 
 app.listen(3000);
 console.log('Running on port 3000...');
