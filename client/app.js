@@ -44,6 +44,8 @@ myApp.controller('appController', ['$scope', '$http', '$routeParams', function($
             window.location.href='#!/';
         });
     }
+
+    //have to implement delete later on.
     
     //For Recipes //
     $scope.getRecipes = function(){

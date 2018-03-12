@@ -70,7 +70,7 @@ const User = sequelize.define('user', {
 app.post('/user/signup', (req, res) => {
   //Checking if username already exist by querying database
   User.count({ where: {username: req.body.username}}).then(user => {
-    console.log(user)
+    //console.log(user)
     if(user >=1) {
       return res.status(409) 
       //error 409 means conflict, 422 means process issues.
@@ -90,6 +90,26 @@ app.post('/user/signup', (req, res) => {
       });
     }
   })
+});
+
+app.post('/user/login', (req, res) => {
+
+      User.find({ where: {username: req.body.username}}).then(user => {
+
+        //We want to check first if there is one user on the array here
+
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
+        if(err) {
+          return res.status(401).json({message: 'Auth failed'});
+        }
+        if(result) {
+          return res.status(200).json({message: "Auth successfull"});
+        }
+
+        res.status(401).json({message: 'Auth failed'});
+
+      });
+    });
 });
 
 app.delete('/user/:id', (req, res) => {
