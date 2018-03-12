@@ -94,9 +94,16 @@ app.post('/user/signup', (req, res) => {
 
 app.post('/user/login', (req, res) => {
 
-      User.find({ where: {username: req.body.username}}).then(user => {
+  User.count({ where: {username: req.body.username}}).then(userCount => {
 
-        //We want to check first if there is one user on the array here
+    //We want to check first if there is one user on the array here
+
+    if(userCount < 1) { //if not, the username is incorrect
+
+      return res.status(401).json({message: 'Auth failed'});
+    }
+
+      User.find({ where: {username: req.body.username}}).then(user => {
 
       bcrypt.compare(req.body.password, user.password, (err, result) => {
         if(err) {
@@ -110,6 +117,7 @@ app.post('/user/login', (req, res) => {
 
       });
     });
+  });
 });
 
 app.delete('/user/:id', (req, res) => {
