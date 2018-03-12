@@ -9,6 +9,7 @@
   "author": "Killiann Hervagault",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "*",
     "express": "*",
     "pg": "^7.4.1",

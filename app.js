@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
+var bcrypt = require('bcrypt');
 
 app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
@@ -37,7 +38,47 @@ const Recipe = sequelize.define('recipe', {
 
 });
 
+
+const User = sequelize.define('user', {
+
+  username: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		validate: {
+			notEmpty: true,
+			len: [1,50]
+		}
+  },
+  
+	password: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		validate: {
+			notEmpty: true
+    }
+  }
+
+})
+
 //Let's do some api stuff here
+
+// For Users //
+app.post('/signup', (req, res) => {
+  bcrypt.hash(req.body.password, 10, (err, hash) => {
+    if(err) {
+      return res.status(500).json({error: err});
+    } else {
+      User.create({
+        username: req.body.username,
+        password: hash
+    
+      }).then((user) => res.json(user))
+    }
+  });
+});
+
+
+// For RECIPES //
 
 /// DEFAULT GET HERE ///
 app.get('/api/recipes', function (req, res) {
