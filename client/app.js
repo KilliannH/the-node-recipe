@@ -20,6 +20,10 @@ myApp.config(['$routeProvider', function($routeProvider){
             templateUrl: 'views/edit-recipe.html',
             controller: 'appController'
         })
+        .when('/user/signup', {
+            templateUrl: 'views/signup.html',
+            controller: 'appController'
+        })
         .otherwise({
             redirecTo: '/'
         });
@@ -33,6 +37,15 @@ myApp.run(function(){
 myApp.controller('appController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
     console.log("appController on the go...")
 
+    //For Users //
+    $scope.signup = function() {
+        $http.post('/user/signup', $scope.user).then(function (response) {
+
+            window.location.href='#!/';
+        });
+    }
+    
+    //For Recipes //
     $scope.getRecipes = function(){
 
        $http.get('/api/recipes').then(function(response){

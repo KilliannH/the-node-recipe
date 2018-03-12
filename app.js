@@ -42,7 +42,8 @@ const Recipe = sequelize.define('recipe', {
 const User = sequelize.define('user', {
 
   username: {
-		type: Sequelize.STRING,
+    type: Sequelize.STRING,
+    unique: true,
 		allowNull: false,
 		validate: {
 			notEmpty: true,
@@ -66,7 +67,7 @@ const User = sequelize.define('user', {
 
 // Add new user //
 
-app.post('/signup', (req, res) => {
+app.post('/user/signup', (req, res) => {
   //Checking if username already exist by querying database
   User.count({ where: {username: req.body.username}}).then(user => {
     console.log(user)
@@ -90,6 +91,14 @@ app.post('/signup', (req, res) => {
     }
   })
 });
+
+app.delete('/user/:id', (req, res) => {
+  User.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then((user) => user ? res.status(200).json(user) : res.status(404).json({error: 'unknown user'}))
+}); //status 200 is the default message when the request is successfull
 
 
 // For RECIPES //
