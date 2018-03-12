@@ -1,11 +1,14 @@
-<div ng-init="getRecipes()">
-        <br>
-        <br>
-        <br>
-        <br>
-        <h3>Latest Recipes</h3>
-        <div ng-repeat="recipe in recipes">
-                    <a href="#!/details/{{recipe.id}}"><h4>{{recipe.name}}</h4></a>
-                    <p>{{recipe.ingredients}}</p>
-        </div>
+<div class="col-md-12"ng-init="getRecipes()">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250" ng-repeat="recipe in recipes">
+                        <div class="card-body d-flex flex-column align-items-start">
+                                <strong class="d-inline-block mb-2 text-success">Recipe</strong>
+                                <h3 class="mb-0">
+                                <p class="text-dark" href="#">{{recipe.name}}</p>
+                                </h3>
+                                <div class="mb-1 text-muted">{{recipe.createdAt}}</div>
+                                  <a href="#!/details/{{recipe.id}}">More Details</a>
+                                </div>
+                                <img class="card-img-right flex-auto d-none d-md-block" ng-src="{{recipe.img_url}}" alt="{{recipe.name}}" style="width: 200px; height: 200px;">
+                        </div>
+                </div>
 </div>

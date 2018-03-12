@@ -5,29 +5,15 @@ body {
     background-color: whitesmoke;
 }
 
+/* Navbar */
+.node_green {
+    color: hsl(120, 58%, 67%);
+}
+
 /* Recipe Home */
 
 .under_the_nav {
     padding-top: 80px;
-}
-
-.rounded-circle {
-    width: 150px;
-}
-
-.card_container {
-    margin-bottom: 40px;
-    margin-left: 30px;
-    margin-right: 30px;
-}
-
-.card-img-right{
-    width: 200px;
-    height: 200px;
-}
-
-.node_green {
-    color: hsl(120, 58%, 67%);
 }
 
 /* Recipe Details here */
