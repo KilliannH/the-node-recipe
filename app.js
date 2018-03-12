@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 
 app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
@@ -63,7 +64,7 @@ const User = sequelize.define('user', {
 
 //Let's do some api stuff here
 
-// For Users //
+///////////////For Users ///////////////
 
 // Add new user //
 
@@ -92,6 +93,8 @@ app.post('/user/signup', (req, res) => {
   })
 });
 
+// Sign in //
+
 app.post('/user/login', (req, res) => {
 
   User.count({ where: {username: req.body.username}}).then(userCount => {
@@ -110,7 +113,17 @@ app.post('/user/login', (req, res) => {
           return res.status(401).json({message: 'Auth failed'});
         }
         if(result) {
-          return res.status(200).json({message: "Auth successfull"});
+          const token = jwt.sign({
+            username: user.username,
+            id: user.id
+          }, "PrivateJwt", { //The super secret key i choose !! :p
+            expiresIn: "1h"
+          });
+
+          return res.status(200).json({
+            message: "Auth successfull",
+          token: token
+          });
         }
 
         res.status(401).json({message: 'Auth failed'});
@@ -129,7 +142,7 @@ app.delete('/user/:id', (req, res) => {
 }); //status 200 is the default message when the request is successfull
 
 
-// For RECIPES //
+/////////////// For RECIPES ///////////////
 
 /// DEFAULT GET HERE ///
 app.get('/api/recipes', function (req, res) {
