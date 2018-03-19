@@ -24,6 +24,10 @@ myApp.config(['$routeProvider', function($routeProvider){
             templateUrl: 'views/signup.html',
             controller: 'appController'
         })
+        .when('/user/login', {
+            templateUrl: 'views/login.html',
+            controller: 'appController'
+        })
         .otherwise({
             redirecTo: '/'
         });
@@ -40,6 +44,13 @@ myApp.controller('appController', ['$scope', '$http', '$routeParams', function($
     //For Users //
     $scope.signup = function() {
         $http.post('/user/signup', $scope.user).then(function (response) {
+
+            window.location.href='#!/';
+        });
+    }
+
+    $scope.login = function() {
+        $http.post('/user/login', $scope.user).then(function (response) {
 
             window.location.href='#!/';
         });

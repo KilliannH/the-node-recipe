@@ -164,6 +164,8 @@ app.get('/api/recipes/:id', function (req, res) {
   }).then((recipe) => recipe ? res.json(recipe) : res.status(404).json({error: 'unknown recipe'}))
 });
 
+//////////////////////// Check Auth Middleware Here ////////////////////
+
 /// POST NEW RECIPE ///
 app.post('/api/recipes/', checkAuth, function (req, res) {
 
@@ -180,7 +182,7 @@ app.post('/api/recipes/', checkAuth, function (req, res) {
 });
 
 /// UPDATE RECIPE ///
-app.put('/api/recipes/:id', function (req, res) {
+app.put('/api/recipes/:id', checkAuth, function (req, res) {
 
   Recipe.find({
     where: {
@@ -204,7 +206,7 @@ app.put('/api/recipes/:id', function (req, res) {
 });
 
 /// DELETE RECIPE ///
-app.delete('/api/recipes/:id', function (req, res) {
+app.delete('/api/recipes/:id', checkAuth, function (req, res) {
 
   Recipe.destroy({
     where: {
